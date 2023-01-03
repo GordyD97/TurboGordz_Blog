@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { PostCard, Categories, PostWidget } from "../components";
+import { PostCard, Categories, PostWidget, Header } from "../components";
 
 const post = [
   { title: "latest trends in web dev", excerpt: "learn React Testing" },
