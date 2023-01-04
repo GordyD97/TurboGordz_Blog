@@ -1,13 +1,16 @@
 import Head from "next/head";
 import { PostCard, Categories, PostWidget, Header } from "../components";
+import { getPosts } from '../services';
 
-const post = [
-  { title: "latest trends in web dev", excerpt: "learn React Testing" },
-  { title: "latest events with webdev", excerpt: "New Webdev Events!" },
-  { title: "best keyboards for devs", excerpt: "Click clack new kb!" },
-];
+// const post = [
+//   { title: "latest trends in web dev", excerpt: "learn React Testing" },
+//   { title: "latest events with webdev", excerpt: "New Webdev Events!" },
+//   { title: "best keyboards for devs", excerpt: "Click clack new kb!" },
+// ];
 
-export default function Home() {
+// above  code block is a "demo post" serving as dummy post use the above block to test redering
+
+export default function Home({ posts }) {
   return (
     <div className="container mx-auto px-10 mb-8 bg-gray-600">
       <Head>
@@ -16,7 +19,7 @@ export default function Home() {
       </Head>
       <div className="grid grid-cols-1  lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {post.map((post, index) => (
+          {posts.map((post, index) => (
             <PostCard post={post} key={post.title} />
           ))}
         </div>
@@ -30,4 +33,12 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const posts = (await getPosts()) || [] ;
+
+  return {
+    props: { posts }
+  }
 }
