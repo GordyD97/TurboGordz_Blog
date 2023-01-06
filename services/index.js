@@ -3,7 +3,7 @@ import { request, gql } from "graphql-request";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
-export const getPost = async () => {
+export const getPosts = async () => {
   const query = gql`
     query MyQuery {
       postsConnection {
@@ -34,11 +34,11 @@ export const getPost = async () => {
     }
   `
 
-  const result = await request(graphqlAPI, querry);
+  const result = await request(graphqlAPI, query);
 
   //  above is the request^^^^
 
-  return result.postConnection.edges;
+  return result.postsConnection.edges;
 
 //   after the results are fetched the line above will be returning the post. 
 
