@@ -12,8 +12,10 @@ const PostCard = ({ post }) => {
           // loader={graphCMSImageLoader}
           src={post.featuredImage}
           alt={post.title}
-          className="objkect-top absolute h-80 w-full object-cover"
+          className="object-top absolute h-80 w-full object-cover shadoq-lg rounded-t-lg lg:rounded-lg"
         />
+
+        {/* re add the syntax src={post.featuredImage.url} when render issue is resolved. */}
       </div>
     </div>
   );
