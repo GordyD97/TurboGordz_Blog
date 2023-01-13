@@ -1,7 +1,6 @@
-import React from 'react'
-import moment from 'moment';
-import Link from 'next/link';
-
+import React from "react";
+import moment from "moment";
+import Link from "next/link";
 
 const PostCard = ({ post }) => {
   console.log(post);
@@ -17,34 +16,56 @@ const PostCard = ({ post }) => {
 
         {/* re add the syntax src={post.featuredImage.url} when render issue is resolved. */}
       </div>
-      <h1 className='transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold'>
-        <Link href={`/post/${post.slug}`}>
-          {post.title}
-
-        </Link>
+      <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
+        <Link href={`/post/${post.slug}`}>{post.title}</Link>
       </h1>
-      <div className='block lg:flex text-center items-center justify-center mb-8 w-full'>
-        <div className='flex items-center justify-center mb-4 lg:mb-0 q-full lg:w-auto mr-8'>
-          <img 
-          alt={post.author.name}
-          height="30px"
-          width="30px"
-          classname="align-middle rounded-full"
-          src={post.author.photo.url}
+      <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
+        <div className="flex items-center justify-center mb-4 lg:mb-0 q-full lg:w-auto mr-8">
+          <img
+            alt={post.author.name}
+            height="30px"
+            width="30px"
+            classname="align-middle rounded-full"
+            src={post.author.photo}
           />
-          <p className='inline align-middle text-gray-700 ml-2 text-lg'>
+          <p className="inline align-middle text-gray-700 ml-2 text-lg">
             {post.author.name}
           </p>
-        </div> 
-<div className='font-medium text-gray-700'>
-{/* date svg goes in here  */}
-</div>
+        </div>
+        <div className="font-medium text-gray-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 inline mr-2 text-pink-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+          <span className="align-middle">
+            {moment(post.createdAt).format("MMM DD, YYYY")}
+          </span>
+        </div>
+      </div>
+      <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">{post.excerpt}</p>
+      <div className="text-center"> 
+        <Link href={`/post/${post.slug}`}>
+        <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-purple-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor pointer">
+          continue reading 
+        </span>
+        {/* use this button style for the rest of the site^^^^^^ */}
+        </Link>
       </div>
     </div>
   );
-}
-// getting an error that url is not being defined probably because of no image url for the demo i used a normal image i think. 
+};
+// getting an error that url is not being defined probably because of no image url for the demo i used a normal image i think.
 
-export default PostCard
+export default PostCard;
 
-// error on render is becacuse of improper data transfer from graphcms most likely the dot notation in the image url link. 
+// error on render is becacuse of improper data transfer from graphcms most likely the dot notation in the image url link.
