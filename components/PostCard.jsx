@@ -56,7 +56,7 @@ const PostCard = ({ post }) => {
       <div className="text-center"> 
         <Link href={`/post/${post.slug}`}>
         <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-purple-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor pointer">
-          continue reading 
+          read more...
         </span>
         {/* use this button style for the rest of the site^^^^^^ */}
         </Link>
