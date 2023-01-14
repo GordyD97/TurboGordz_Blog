@@ -3,7 +3,7 @@ import moment from "moment";
 import Link from "next/link";
 
 const PostCard = ({ post }) => {
-  console.log(post);
+  // console.log(post);
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
@@ -25,9 +25,11 @@ const PostCard = ({ post }) => {
             alt={post.author.name}
             height="30px"
             width="30px"
-            classname="align-middle rounded-full"
+            className="align-middle rounded-full"
             src={post.author.photo}
+            // src={post.author.photo.url}
           />
+          {/* for some reason the .url tag does not work properly. will trouble shoot problem then fix later.  */}
           <p className="inline align-middle text-gray-700 ml-2 text-lg">
             {post.author.name}
           </p>
@@ -52,13 +54,15 @@ const PostCard = ({ post }) => {
           </span>
         </div>
       </div>
-      <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">{post.excerpt}</p>
-      <div className="text-center"> 
+      <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
+        {post.excerpt}
+      </p>
+      <div className="text-center">
         <Link href={`/post/${post.slug}`}>
-        <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-purple-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor pointer">
-          read more...
-        </span>
-        {/* use this button style for the rest of the site^^^^^^ */}
+          <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-purple-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor pointer">
+            read more...
+          </span>
+          {/* use this button style for the rest of the site^^^^^^ */}
         </Link>
       </div>
     </div>

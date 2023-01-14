@@ -8,6 +8,7 @@ export const getPosts = async () => {
     query MyQuery {
       postsConnection {
         edges {
+          cursor
           node {
             author {
               bio
@@ -32,7 +33,7 @@ export const getPosts = async () => {
         }
       }
     }
-  `
+  `;
 
   const result = await request(graphqlAPI, query);
 
@@ -43,10 +44,54 @@ export const getPosts = async () => {
 //   after the results are fetched the line above will be returning the post. 
 
 }
-
-/*this is how you fetch data using graphql and graphcms 
+/*this is how you fetch data using graphql and graphcms
     you will be able to make a request below the query model */
 
 
 
 // new models to be made in the query things for post music embeds codin help blocks and videos. 
+
+
+export const getRecentPosts = async () => {
+const query = gql`
+query GetPostDetails() {
+  post(orderBy: createdAt_ASC last: 3 ) 
+  {
+    title 
+    featuredImage
+    url
+    {
+      createdAt
+      slug
+    }
+  }
+}`
+  const result = await request(graphqlAPI, query);
+
+  return result.posts;
+
+};
+
+export const getSimlarPosts = async () => {
+const query = gql`
+ const getPostDetails($slug: String!, $categories: [String!]) {
+  posts(
+    where: { slug_not: $slug, &&: {categories_some: { slug_in: $categoreis}} }
+    last: 3
+  )
+  {
+    title 
+    featuredImage
+    url
+    {
+      createdAt
+      slug
+    }
+ }
+`
+
+  const result = await request(graphqlAPI, query);
+
+  return result.posts;
+// complicated ass graphql query^^^^
+}
